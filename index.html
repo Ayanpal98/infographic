@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayan Pal | Resume Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+            display: none; /* Initially hidden for onclick loading */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            border-left: 5px solid #0a9396;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px); /* Initial state for animation */
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            position: relative;
+            min-height: 80px;
+        }
+        .flow-step:not(:last-child)::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #0a9396;
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(20px); /* Initial state for animation */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Keyframes for header animations */
+        @keyframes fadeInSlideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScaleHeader {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chart-load-button {
+            background-color: #0a9396;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        .chart-load-button:hover {
+            background-color: #005f73;
+        }
+        /* Animation classes for sections and KPI cards */
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .kpi-card-animate {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-[#001219]">
+
+    <header class="bg-[#005f73] text-white p-8 text-center rounded-b-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold animate-on-load" style="opacity:0; animation: fadeInSlideDown 0.8s ease-out forwards;">Ayan Pal</h1>
+        <p class="text-xl md:text-2xl mt-2 text-[#e9d8a6] animate-on-load" style="opacity:0; animation: fadeInSlideUp 0.8s ease-out forwards 0.2s;">Content Writer | AI Developer | Business Strategist</p>
+        <div class="mt-4 animate-on-load" style="opacity:0; animation: fadeInScaleHeader 0.8s ease-out forwards 0.4s;">
+             <a href="https://ayanportf.netlify.app/" target="_blank" class="bg-[#94d2bd] text-[#001219] font-bold py-2 px-4 rounded-full inline-block hover:bg-[#e9d8a6] transition-colors">View Portfolio</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section class="text-center mb-12 section-card">
+            <h2 class="text-3xl font-bold text-[#005f73] mb-4">A Multi-Faceted Professional Profile</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700">This visual summary showcases a unique blend of creative, technical, and business expertise. With over two years of experience, the focus has been on driving measurable growth, enhancing user experiences through AI, and crafting compelling content that engages and educates.</p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 kpi-card-group">
+            <div class="kpi-card">
+                <div class="text-5xl font-bold text-[#0a9396]">30%</div>
+                <p class="text-lg mt-2">Improvement in Student Engagement</p>
+            </div>
+            <div class="kpi-card">
+                <div class="text-5xl font-bold text-[#0a9396]">40%</div>
+                <p class="text-lg mt-2">Boost in System Functionality & UX</p>
+            </div>
+            <div class="kpi-card">
+                <div class="text-5xl font-bold text-[#0a9396]">20%</div>
+                <p class="text-lg mt-2">Revenue Growth from New Opportunities</p>
+            </div>
+        </div>
+
+        <section class="section-card">
+            <h3 class="text-2xl font-bold text-[#005f73] mb-4 text-center">AI & ML Development Impact</h3>
+            <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">As an AI-ML Developer at Talkeng Online Solution, the primary goal was to create intelligent systems that automated tasks and enhanced user experience. The following charts illustrate the significant performance gains achieved.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="flex flex-col items-center justify-center">
+                    <button id="loadAiChartBtn" class="chart-load-button">Show AI Performance Metrics</button>
+                    <div class="chart-container">
+                        <canvas id="aiPerformanceChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                     <h4 class="text-xl font-semibold text-[#005f73] mb-2">Key Automation Metrics</h4>
+                     <p class="text-gray-600 mb-4">The AI systems developed automated a significant portion of routine work, leading to dramatic efficiency improvements.</p>
+                     <ul class="space-y-3">
+                         <li class="flex items-center"><span class="text-2xl mr-3 text-[#0a9396]">✓</span> 75% of routine tasks automated.</li>
+                         <li class="flex items-center"><span class="text-2xl mr-3 text-[#0a9396]">✓</span> Chatbot response times halved to 1 minute.</li>
+                         <li class="flex items-center"><span class="text-2xl mr-3 text-[#0a9396]">✓</span> 30% reduction in manual errors and human intervention.</li>
+                         <li class="flex items-center"><span class="text-2xl mr-3 text-[#0a9396]">✓</span> 100% increase in overall system performance.</li>
+                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h3 class="text-2xl font-bold text-[#005f73] mb-4 text-center">Accelerating Business Growth</h3>
+            <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">At Movidu Tech, the focus was on expanding the client base and boosting revenue. A combination of strategic sales initiatives and digital marketing campaigns yielded substantial returns.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                 <div class="flex flex-col items-center justify-center">
+                    <h4 class="text-xl font-semibold text-[#005f73] mb-2">Client Acquisition Funnel</h4>
+                    <p class="text-gray-600 mb-4">By optimizing the sales and marketing funnel, we significantly increased both the quantity and quality of leads, leading to a major expansion of the client base.</p>
+                    <button id="loadBizDevChartBtn" class="chart-load-button">Reveal Client Acquisition Data</button>
+                    <div class="chart-container">
+                        <canvas id="bizDevChart"></canvas>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <h4 class="text-xl font-semibold text-[#005f73] mb-2">Operational Excellence</h4>
+                    <p class="text-gray-600 mb-4">Internal improvements were just as critical as external growth. Training programs and process optimizations led to a more efficient and satisfied workforce.</p>
+                    <button id="loadOpsExcellenceChartBtn" class="chart-load-button">View Operational Efficiency</button>
+                    <div class="chart-container">
+                        <canvas id="opsExcellenceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h3 class="text-2xl font-bold text-[#005f73] mb-4 text-center">Engaging Learners with Strategic Content</h3>
+            <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">In the role of Senior Academic Content Writer at Teachief Academy, the objective was to create an innovative and effective learning ecosystem. This involved a collaborative workflow and a focus on measurable student engagement.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center">
+                    <h4 class="text-xl font-semibold text-[#005f73] mb-2">Content Creation Workflow</h4>
+                    <p class="text-gray-600 mb-6">A structured process ensured high-quality, personalized content delivery.</p>
+                    <div class="space-y-12">
+                        <div class="flow-step">
+                            <div class="mx-auto bg-[#e9d8a6] p-4 rounded-lg shadow-md w-3/4">
+                                <p class="font-bold">Collaborate with 20+ Educators</p>
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="mx-auto bg-[#94d2bd] p-4 rounded-lg shadow-md w-3/4">
+                                <p class="font-bold">Author 50+ Educational Pieces</p>
+                            </div>
+                        </div>
+                         <div class="flow-step">
+                            <div class="mx-auto bg-[#0a9396] text-white p-4 rounded-lg shadow-md w-3/4">
+                               <p class="font-bold">Personalize for 500+ Students</p>
+                            </div>
+                        </div>
+                         <div class="flow-step">
+                            <div class="mx-auto bg-[#005f73] text-white p-4 rounded-lg shadow-md w-3/4">
+                                <p class="font-bold">Achieve 30% Engagement Growth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <h4 class="text-xl font-semibold text-[#005f73] mb-2">Skillset Synthesis</h4>
+                    <p class="text-gray-600 mb-4">This profile represents a balanced combination of technical, creative, and strategic business skills, allowing for a holistic approach to problem-solving and project execution.</p>
+                    <button id="loadSkillsChartBtn" class="chart-load-button">Analyze Skillset</button>
+                    <div class="chart-container">
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h3 class="text-2xl font-bold text-[#005f73] mb-4 text-center">Stock Market Analysis Example</h3>
+            <p class="text-gray-600 mb-8 text-center max-w-2xl mx-auto">This section demonstrates proficiency in technical analysis, identifying key patterns, support/resistance levels, and potential reversal zones in financial markets.</p>
+            <div class="flex justify-center items-center">
+                <img src="stock_market.jpg" alt="Stock Market Technical Analysis Chart" class="max-w-full h-auto rounded-lg shadow-md border border-gray-200">
+            </div>
+            <p class="text-center text-gray-500 text-sm mt-4">Example of Bitcoin/U.S. Dollar (BTC/USD) technical analysis, showing resistance, supply/demand zones, and untouched FVG.</p>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#001219] text-white p-6 text-center mt-8">
+        <p>Ready to collaborate? Let's connect.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="mailto:Ayanpal0698@gmail.com" class="hover:text-[#94d2bd]">Email</a>
+            <a href="https://www.linkedin.com/in/ayan-pal-6ba807231/" target="_blank" class="hover:text-[#94d2bd]">LinkedIn</a>
+            <a href="https://ayanportf.netlify.app/" target="_blank" class="hover:text-[#94d2bd]">Portfolio</a>
+        </div>
+        <p class="text-sm mt-4 text-gray-400">This infographic was built using HTML, Tailwind CSS, and Chart.js. No SVG or Mermaid JS was used. Color Palette: Brilliant Blues.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartTooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length < maxWidth) {
+                        currentLine += word + ' ';
+                    } else {
+                        lines.push(currentLine.trim());
+                        currentLine = word + ' ';
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            // Intersection Observer for section and KPI card animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('kpi-card-group')) {
+                            Array.from(entry.target.children).forEach((card, index) => {
+                                card.style.animationDelay = `${index * 0.15}s`;
+                                card.classList.add('kpi-card-animate');
+                            });
+                        } else if (entry.target.classList.contains('section-card')) {
+                            entry.target.classList.add('animate-in');
+                        }
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for scroll-triggered animations
+            document.querySelectorAll('.section-card').forEach(section => {
+                observer.observe(section);
+            });
+            // Observe the KPI card container
+            const kpiGroup = document.querySelector('.grid.gap-8.mb-12');
+            kpiGroup.classList.add('kpi-card-group'); // Add a class to target the group
+            observer.observe(kpiGroup);
+
+
+            // Function to initialize a chart
+            const initializeChart = (chartId, chartType, chartData, chartOptions) => {
+                const ctx = document.getElementById(chartId).getContext('2d');
+                new Chart(ctx, {
+                    type: chartType,
+                    data: chartData,
+                    options: chartOptions
+                });
+            };
+
+            // AI Performance Chart
+            document.getElementById('loadAiChartBtn').addEventListener('click', function() {
+                this.style.display = 'none'; // Hide the button
+                const chartContainer = this.nextElementSibling; // Get the chart container div
+                chartContainer.style.display = 'block'; // Show the chart container
+                initializeChart('aiPerformanceChart', 'bar', {
+                    labels: ['Customer Service Efficiency', 'Operational Effectiveness', 'Scalability', 'User Satisfaction'].map(label => wrapLabel(label, 16)),
+                    datasets: [{
+                        label: 'Performance Improvement (%)',
+                        data: [25, 20, 35, 20],
+                        backgroundColor: ['#0a9396', '#94d2bd', '#005f73', '#e9d8a6'],
+                        borderColor: '#001219',
+                        borderWidth: 1
+                    }]
+                }, {
+                    ...chartTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: '#001219' },
+                            grid: { color: '#e2e8f0' }
+                        },
+                        y: {
+                            ticks: { color: '#001219' }
+                        }
+                    },
+                    plugins: {
+                         ...chartTooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                });
+            });
+
+            // Client Acquisition Funnel Chart
+            document.getElementById('loadBizDevChartBtn').addEventListener('click', function() {
+                this.style.display = 'none';
+                const chartContainer = this.nextElementSibling;
+                chartContainer.style.display = 'block';
+                initializeChart('bizDevChart', 'doughnut', {
+                    labels: ['Client Base Expansion (40%)', 'Revenue Boost (20%)', 'Lead Increase (25%)', 'Conversion Increase (30%)'].map(label => wrapLabel(label, 16)),
+                    datasets: [{
+                        label: 'Growth Metrics',
+                        data: [40, 20, 25, 30],
+                        backgroundColor: ['#005f73', '#0a9396', '#94d2bd', '#e9d8a6'],
+                        hoverOffset: 4
+                    }]
+                }, {
+                    ...chartTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     plugins: {
+                        ...chartTooltipCallback.plugins,
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#001219'
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Operational Excellence Chart
+            document.getElementById('loadOpsExcellenceChartBtn').addEventListener('click', function() {
+                this.style.display = 'none';
+                const chartContainer = this.nextElementSibling;
+                chartContainer.style.display = 'block';
+                initializeChart('opsExcellenceChart', 'bar', {
+                    labels: ['Onboarding Time Reduction', 'Employee Satisfaction', 'Customer Retention', 'Cost Reduction'].map(label => wrapLabel(label, 16)),
+                    datasets: [{
+                        label: 'Improvement (%)',
+                        data: [50, 20, 15, 15],
+                        backgroundColor: ['#005f73', '#0a9396', '#94d2bd', '#e9d8a6'],
+                        borderWidth: 0
+                    }]
+                }, {
+                    ...chartTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#001219' }
+                        },
+                        x: {
+                            ticks: { color: '#001219' }
+                        }
+                    },
+                    plugins: {
+                        ...chartTooltipCallback.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                });
+            });
+
+            // Skillset Radar Chart
+            document.getElementById('loadSkillsChartBtn').addEventListener('click', function() {
+                this.style.display = 'none';
+                const chartContainer = this.nextElementSibling;
+                chartContainer.style.display = 'block';
+                initializeChart('skillsRadarChart', 'radar', {
+                    labels: ['Content & SEO', 'AI/ML Dev', 'Business Growth', 'Web Dev & UX', 'Project Management'],
+                    datasets: [{
+                        label: 'Skill Proficiency',
+                        data: [9, 8, 8, 7, 9],
+                        fill: true,
+                        backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                        borderColor: '#0a9396',
+                        pointBackgroundColor: '#0a9396',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#0a9396'
+                    }]
+                }, {
+                    ...chartTooltipCallback,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#94d2bd' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: {
+                                color: '#001219',
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            ticks: {
+                                color: '#005f73',
+                                backdropColor: '#f8fafc',
+                                stepSize: 2
+                            },
+                             suggestedMin: 0,
+                             suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        ...chartTooltipCallback.plugins,
+                        legend: {
+                            display: false,
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
